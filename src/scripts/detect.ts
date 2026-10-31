@@ -116,24 +116,7 @@ function finalize(total: number, hits: Hit[]) {
   const desc = q('#risk-desc');
   if (desc) {
     desc.textContent = t(`band.${band}.desc`);
-    // High risk gets a consolation plug:
-    // "But you still have <Kimi Code>, <DeepSeek> and <GLM>".
-    if (band === 'high') {
-      desc.append(` ${t('band.high.extra')} `);
-      BAND_HIGH_LINKS.forEach((link, i) => {
-        if (i > 0) {
-          desc.append(i === BAND_HIGH_LINKS.length - 1 ? t('band.high.extraSepLast') : t('band.high.extraSep'));
-        }
-        const a = document.createElement('a');
-        a.href = link.url;
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-        a.textContent = link.label;
-        a.setAttribute('data-ga-event', 'cn_model_click');
-        a.setAttribute('data-ga-id', `${link.id}-band-high`);
-        desc.appendChild(a);
-      });
-    }
+
   }
 
   const titleEl = q('#result-title');

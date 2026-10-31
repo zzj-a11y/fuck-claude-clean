@@ -1,6 +1,5 @@
 ---
 import { useTranslations, type Lang } from '../i18n/ui';
-import { ADSENSE_PUB_ID } from '../config/site';
 import LocaleSuggestBanner from '../components/LocaleSuggestBanner.astro';
 
 interface Props {
@@ -44,7 +43,6 @@ const ogLocale = lang === 'zh' ? 'zh_CN' : 'en_US';
 const title = titleProp ?? t('meta.title');
 const description = descriptionProp ?? t('meta.description');
 
-const GA_ID = 'G-S19V74WZZJ';
 
 const faq = omitFaq
   ? []
@@ -139,34 +137,11 @@ const jsonLd = {
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-    <!-- Google AdSense -->
-    <script
-      is:inline
-      async
-      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_PUB_ID}`}
-      crossorigin="anonymous"></script>
-
-    <!-- Google tag (gtag.js) -->
-    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-    ></script>
-    <script is:inline define:vars={{ GA_ID }}>
-      // define:vars wraps this script in an IIFE, so `function gtag(){}` would
-      // stay local — assign to window explicitly so track.ts can call it.
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function gtag() {
-        window.dataLayer.push(arguments);
-      };
-      window.gtag('js', new Date());
-      window.gtag('config', GA_ID);
-    </script>
   </head>
   <body>
     <LocaleSuggestBanner currentLang={lang} enPath={enPath} zhPath={zhPath} />
     <slot />
 
-    <script>
-      import '../scripts/track';
-    </script>
 
     <style is:global>
       :root {

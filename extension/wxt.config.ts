@@ -1,12 +1,15 @@
 import { defineConfig } from 'wxt';
 
 const e2e = process.env.SLC_E2E === '1';
+const siteUrl = process.env.SITE_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : '');
+const siteHost = siteUrl ? new URL(siteUrl).hostname : '';
 
 export default defineConfig({
   outDir: e2e ? '.output-e2e' : '.output',
   vite: () => ({
     define: {
       __SLC_E2E__: JSON.stringify(e2e),
+      __SITE_HOST__: JSON.stringify(siteHost),
     },
     build: {
       sourcemap: false,
@@ -33,7 +36,6 @@ export default defineConfig({
       'https://*.claude.ai/*',
       'https://claude.com/*',
       'https://*.claude.com/*',
-      'https://fuck-claude.vercel.app/*',
       'https://*/*',
     ],
     icons: {

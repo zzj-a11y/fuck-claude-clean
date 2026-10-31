@@ -11,7 +11,7 @@ import vercel from '@astrojs/vercel';
 // (`export const prerender = false`) can run as a Vercel Function and read the
 // request's geo headers for the curl/API endpoint.
 export default defineConfig({
-  site: 'https://fuck-claude.vercel.app',
+  site: process.env.SITE_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : 'http://localhost:4321'),
   output: 'static',
   adapter: vercel(),
   i18n: {

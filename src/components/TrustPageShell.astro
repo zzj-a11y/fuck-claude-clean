@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LangToggle from './LangToggle.astro';
-import SocialLinks from './SocialLinks.astro';
 import Footer from './Footer.astro';
 import { useTranslations, type Lang } from '../i18n/ui';
 
@@ -77,7 +76,6 @@ const breadcrumbJsonLd = {
         <a class="nav__link" href={newsHub}>{t('nav.news')}</a>
         <a class="nav__link" href={extensionPage}>{t('nav.extension')}</a>
         <LangToggle lang={lang} />
-        <SocialLinks lang={lang} />
       </nav>
     </div>
   </header>

@@ -1,3 +1,13 @@
+# 无广告独立部署版
+
+此版本基于 [LinXiaoTao/FuckClaude](https://github.com/LinXiaoTao/FuckClaude)，保留原 MIT 许可证；去除了广告与访问统计。检测分数为项目估算，不是 Claude 官方风险或封号概率。
+
+部署前设置 `SITE_URL` 为正式站点根地址。网站使用 pnpm 10 和 Node.js 24。执行 `pnpm install --frozen-lockfile && pnpm build`。Mac App 使用 `SITE_URL=https://你的域名 mac-app/build.sh` 构建。
+
+资讯与指南是上游内容快照。
+
+---
+
 # Fuck Claude — Are You a Claude "China User"?
 
 English | [中文](#中文)

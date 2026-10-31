@@ -5,10 +5,6 @@ import { getGuide, type GuideArticle } from '../config/guides';
 import LangToggle from './LangToggle.astro';
 import ScoreRing from './ScoreRing.astro';
 import Mascot from './Mascot.astro';
-import Sponsors from './Sponsors.astro';
-import ResultSponsor from './ResultSponsor.astro';
-import CnModels from './CnModels.astro';
-import SocialLinks from './SocialLinks.astro';
 import Footer from './Footer.astro';
 import ClaudeNews from './ClaudeNews.astro';
 import CommunityPosts from './CommunityPosts.astro';
@@ -34,7 +30,7 @@ const featuredGuides = FEATURED_GUIDE_SLUGS.map(getGuide).filter(
 );
 const reduceSteps = [t('reduce.s1'), t('reduce.s2'), t('reduce.s3'), t('reduce.s4'), t('reduce.s5')];
 
-const API_BASE = 'https://fuck-claude.vercel.app/api/check';
+const API_BASE = new URL('/api/check', Astro.site).href;
 const apiExamples = [
   { comment: t('api.ex1'), cmd: `curl ${API_BASE}` },
   { comment: t('api.ex2'), cmd: `curl -H "Accept-Language: zh" ${API_BASE}` },
@@ -84,7 +80,6 @@ const apiExamples = [
         <span>{t('nav.extension')}</span>
       </a>
       <LangToggle lang={lang} />
-      <SocialLinks lang={lang} />
       <a
         class="icon-link"
         href="https://github.com/LinXiaoTao/FuckClaude"
@@ -100,7 +95,7 @@ const apiExamples = [
   </div>
 </header>
 
-<Sponsors lang={lang} />
+
 
 <main class="wrap">
   <section class="hero">
@@ -121,7 +116,7 @@ const apiExamples = [
         <p class="result__title" id="result-title"></p>
         <div class="result__hits" id="result-hits"></div>
 
-        <ResultSponsor lang={lang} />
+
 
         <div class="share" id="share" hidden>
           <span class="share__label">{t('share.label')}</span>
@@ -313,7 +308,7 @@ const apiExamples = [
     </div>
   </section>
 
-  <CnModels lang={lang} />
+
 
   <section id="faq-sec" aria-labelledby="faq-title">
     <div class="section-head">
